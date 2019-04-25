@@ -1,0 +1,626 @@
+{
+	"info": {
+		"_postman_id": "2f9068db-0715-4d85-91c0-67a7f217e73b",
+		"name": "Hashicorp Terraform API",
+		"description": "This API is for Terraform Enterprise, it is no all inclusive and serves as a demo for SOME of the API calls.  All calls must have a bearer Authorization header.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Organizations (Get) - Single named ORG",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{OAUTH-TOKEN}}",
+						"description": "Not optional"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{API-BASE}}/api/v2/organizations/{{ORG}}",
+					"protocol": "https",
+					"host": [
+						"{{API-BASE}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"organizations",
+						"{{ORG}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Organizations  (POST)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{OAUTH-TOKEN}}",
+						"description": "Not optional"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"data\": {\n    \"type\": \"organizations\",\n    \"attributes\": {\n      \"name\": \"testingtesting123\",\n      \"email\": \"jdohoney@hashicorp.com\"\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "https://{{API-BASE}}/api/v2/organizations",
+					"protocol": "https",
+					"host": [
+						"{{API-BASE}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"organizations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Organizations (Patch)",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{OAUTH-TOKEN}}",
+						"description": "Not optional"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"data\": {\n    \"type\": \"organizations\",\n    \"attributes\": {\n      \"name\": \"testingtesting12345\",\n      \"email\": \"jdohoney@hashicorp.com\"\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "https://{{API-BASE}}/api/v2/organizations/testingtesting123",
+					"protocol": "https",
+					"host": [
+						"{{API-BASE}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"organizations",
+						"testingtesting123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Organizations (Delete)",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{OAUTH-TOKEN}}",
+						"description": "Not optional"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://{{API-BASE}}/api/v2/organizations/{{REPLACEWWITHORGTOBEDELETED}}",
+					"protocol": "https",
+					"host": [
+						"{{API-BASE}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"organizations",
+						"{{REPLACEWWITHORGTOBEDELETED}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Workspace  (GET) -- Be sure to get OAUTH token ID before this call",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{OAUTH-TOKEN}}",
+						"description": "Not optional"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"name\": \"aws-tfe-demo\",\n      \"terraform_version\": \"0.11.1\",\n      \"working-directory\": \"\",\n      \"vcs-repo\": {\n        \"identifier\": \"johndohoneyjr/aws-ha-simple-vpc\",\n        \"oauth-token-id\": \"ot-JbGUhJCEmEvWNyb5\",\n        \"branch\": \"\",\n        \"default-branch\": true\n      }\n    },\n    \"type\": \"workspaces\"\n  }\n}"
+				},
+				"url": {
+					"raw": "https://{{API-BASE}}/api/v2/organizations/{{ORG}}/workspaces",
+					"protocol": "https",
+					"host": [
+						"{{API-BASE}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"organizations",
+						"{{ORG}}",
+						"workspaces"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OAUTH Tokens  (Get)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{OAUTH-TOKEN}}",
+						"description": "Not optional"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{API-BASE}}/api/v2/organizations/{{ORG}}/oauth-tokens",
+					"protocol": "https",
+					"host": [
+						"{{API-BASE}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"organizations",
+						"{{ORG}}",
+						"oauth-tokens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Variables  (POST) - Only a single variable allowed",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{OAUTH-TOKEN}}",
+						"description": "Not optional"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"data\": {\n    \"type\":\"vars\",\n    \"attributes\": {\n      \"key\":\"some_key\",\n      \"value\":\"some_value\",\n      \"category\":\"terraform\",\n      \"hcl\":false,\n      \"sensitive\":false\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\":\"ws-wBnpth7GhrYBcrLS\",\n          \"type\":\"workspaces\"\n        }\n      }\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "https://{{API-BASE}}/api/v2/vars",
+					"protocol": "https",
+					"host": [
+						"{{API-BASE}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"vars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Variables  (Get)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{OAUTH-TOKEN}}",
+						"description": "Not optional"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{API-BASE}}/api/v2/vars?filter[organization][name]={{ORG}}&filter[workspace][name]={{WORKSPACE}}",
+					"protocol": "https",
+					"host": [
+						"{{API-BASE}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"vars"
+					],
+					"query": [
+						{
+							"key": "filter[organization][name]",
+							"value": "{{ORG}}"
+						},
+						{
+							"key": "filter[workspace][name]",
+							"value": "{{WORKSPACE}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Hello (GET)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{OAUTH-TOKEN}}",
+						"description": "Not optional"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{API-BASE}}/api/v2/organizations/{{ORG}}/workspaces/{{WORKSPACE}}",
+					"protocol": "https",
+					"host": [
+						"{{API-BASE}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"organizations",
+						"{{ORG}}",
+						"workspaces",
+						"{{WORKSPACE}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Workspace Runs  (GET)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{OAUTH-TOKEN}}",
+						"description": "Not optional"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{API-BASE}}/api/v2/workspaces/{{WORKSPACE-ID}}/runs",
+					"protocol": "https",
+					"host": [
+						"{{API-BASE}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"workspaces",
+						"{{WORKSPACE-ID}}",
+						"runs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Runs  (GET)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"description": "Not optional",
+						"key": "Authorization",
+						"value": "Bearer {{OAUTH-TOKEN}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{API-BASE}}/api/v2/runs/{{RUN-ID}}",
+					"protocol": "https",
+					"host": [
+						"{{API-BASE}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"runs",
+						"{{RUN-ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Workspace  (GET) -- Be sure to get OAUTH token ID before this call",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{OAUTH-TOKEN}}",
+						"description": "Not optional"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{API-BASE}}/api/v2/organizations/{{ORG}}/workspaces",
+					"protocol": "https",
+					"host": [
+						"{{API-BASE}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"organizations",
+						"{{ORG}}",
+						"workspaces"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Organizations  (GET) -- All Organizations",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{OAUTH-TOKEN}}",
+						"description": "Not optional"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{API-BASE}}/api/v2/organizations",
+					"protocol": "https",
+					"host": [
+						"{{API-BASE}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"organizations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Configuration Version (POST)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{OAUTH-TOKEN}}",
+						"description": "Not optional"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"data\": {\n    \"type\": \"configuration-versions\",\n    \"attributes\": {\n      \"auto-queue-runs\": true\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "https://{{API-BASE}}/api/v2/workspaces/{{WORKSPACE-ID}}/configuration-versions",
+					"protocol": "https",
+					"host": [
+						"{{API-BASE}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"workspaces",
+						"{{WORKSPACE-ID}}",
+						"configuration-versions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Runs (POST)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{OAUTH-TOKEN}}",
+						"description": "Not optional"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"is-destroy\":false,\n      \"message\": \"Test Plan with Repo\"\n    },\n    \"type\":\"runs\",\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"type\": \"workspaces\",\n          \"id\": \"ws-1YHkeodNq42sRyrh\"\n        }\n      },\n      \"configuration-version\": {\n        \"data\": {\n          \"type\": \"configuration-versions\",\n          \"id\": \"cv-LwMfS2ds1GChyzbE\"\n        }\n      }\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "https://{{API-BASE}}/api/v2/runs",
+					"protocol": "https",
+					"host": [
+						"{{API-BASE}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"runs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Workspace (GET) WS ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{OAUTH-TOKEN}}",
+						"description": "Not optional"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"name\": \"aws-tfe-demo\",\n      \"terraform_version\": \"0.11.1\",\n      \"working-directory\": \"\",\n      \"vcs-repo\": {\n        \"identifier\": \"johndohoneyjr/aws-ha-simple-vpc\",\n        \"oauth-token-id\": \"ot-JbGUhJCEmEvWNyb5\",\n        \"branch\": \"\",\n        \"default-branch\": true\n      }\n    },\n    \"type\": \"workspaces\"\n  }\n}"
+				},
+				"url": {
+					"raw": "https://{{API-BASE}}/api/v2/organizations/{{ORG}}/workspaces/{{WORKSPACE}}",
+					"protocol": "https",
+					"host": [
+						"{{API-BASE}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"organizations",
+						"{{ORG}}",
+						"workspaces",
+						"{{WORKSPACE}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://{{API-BASE}}/api/v2/workspaces/{{WORKSPACE-ID}}/configuration-versions",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{OAUTH-TOKEN}}",
+						"description": "Not optional"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"data\": {\n    \"type\": \"configuration-versions\",\n    \"attributes\": {\n      \"auto-queue-runs\": true\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "https://{{API-BASE}}/api/v2/workspaces/{{WORKSPACE-ID}}/configuration-versions",
+					"protocol": "https",
+					"host": [
+						"{{API-BASE}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"workspaces",
+						"{{WORKSPACE-ID}}",
+						"configuration-versions"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
